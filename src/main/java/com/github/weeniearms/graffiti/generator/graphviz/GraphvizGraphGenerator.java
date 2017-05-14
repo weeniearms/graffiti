@@ -7,8 +7,6 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.imageio.ImageIO;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -49,15 +47,7 @@ public class GraphvizGraphGenerator implements GraphGenerator {
                 Process dotProcess = Runtime.getRuntime().exec(args);
                 dotProcess.waitFor(timeout, TimeUnit.MILLISECONDS);
 
-
-                switch (format) {
-                    case PNG:
-                        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                        ImageIO.write(ImageIO.read(outputFile), format.name(), outputStream);
-                        return outputStream.toByteArray();
-                    default:
-                        return FileUtils.readFileToByteArray(outputFile);
-                }
+                return FileUtils.readFileToByteArray(outputFile);
             } finally {
                 deleteTemporaryFile(outputFile);
             }

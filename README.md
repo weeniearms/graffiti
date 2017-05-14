@@ -16,6 +16,14 @@ Run as any other spring-boot fat jar:
 java -jar graffiti-0.0.1-SNAPSHOT.jar
 ```
 
+##### Configuration
+
+The following configuration can be provided either by using an application.properties/application.yml file or by system/env variables:
+- `graphviz.location` - the location of the dot executable (defaults to /usr/bin/dot)
+- `graphviz.timeout` - timeout (in ms) on waiting for the dot process to finish (defaults to 2000)
+- `cache.time-to-live` - time to live (in ms) for cached graphs (defaults to 1800000 = 30 minutes)
+- `cache.max-weight` - maximum weight of cache in bytes (defaults to 104857600 = 100MB)
+
 #### Embedding graphs in markdown
 
 Regardless of the chosen output format, you need to add a trailing `;` to each line of the graph source in order to make it compatible with graffiti.

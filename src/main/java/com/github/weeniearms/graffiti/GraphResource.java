@@ -12,16 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.util.Arrays;
 
 @RestController
 public class GraphResource {
 
-    private final GraphGenerator[] generators;
+    private final GraphService graphService;
 
     @Autowired
-    public GraphResource(GraphGenerator[] generators) {
-        this.generators = generators;
+    public GraphResource(GraphService graphService) {
+        this.graphService = graphService;
     }
 
     @RequestMapping(value = "/svg", method = RequestMethod.GET, produces = "image/svg+xml")
@@ -37,13 +36,7 @@ public class GraphResource {
     private byte[] generateGraph(HttpServletRequest request, GraphGenerator.OutputFormat format) throws IOException {
         String source = URLDecoder.decode(request.getQueryString(), "UTF-8");
 
-        GraphGenerator generator =
-                Arrays.stream(generators)
-                        .filter(g -> g.isSourceSupported(source))
-                        .findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("No matching generator found for source"));
-
-        return generator.generateGraph(source, format);
+        return graphService.generateGraph(source, format);
     }
 
     @ExceptionHandler
