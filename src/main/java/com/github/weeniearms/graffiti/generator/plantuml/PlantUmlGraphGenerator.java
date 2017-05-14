@@ -1,15 +1,18 @@
-package com.github.weeniearms.graffiti.generator;
+package com.github.weeniearms.graffiti.generator.plantuml;
 
+import com.github.weeniearms.graffiti.generator.GraphGenerator;
 import lombok.extern.slf4j.Slf4j;
 import net.sourceforge.plantuml.FileFormat;
 import net.sourceforge.plantuml.FileFormatOption;
 import net.sourceforge.plantuml.SourceStringReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 @Slf4j
+@Component
 public class PlantUmlGraphGenerator implements GraphGenerator {
 
     private final PlantUmlSourceFormatter sourceFormatter;
@@ -17,6 +20,11 @@ public class PlantUmlGraphGenerator implements GraphGenerator {
     @Autowired
     public PlantUmlGraphGenerator(PlantUmlSourceFormatter sourceFormatter) {
         this.sourceFormatter = sourceFormatter;
+    }
+
+    @Override
+    public boolean isSourceSupported(String source) {
+        return source.trim().startsWith("@startuml");
     }
 
     @Override

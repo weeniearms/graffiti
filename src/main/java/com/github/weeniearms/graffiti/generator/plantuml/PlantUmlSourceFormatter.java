@@ -1,4 +1,4 @@
-package com.github.weeniearms.graffiti.generator;
+package com.github.weeniearms.graffiti.generator.plantuml;
 
 import org.springframework.stereotype.Component;
 

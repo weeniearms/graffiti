@@ -1,5 +1,8 @@
-package com.github.weeniearms.graffiti.generator;
+package com.github.weeniearms.graffiti.generator.plantuml;
 
+import com.github.weeniearms.graffiti.generator.GraphGenerator;
+import com.github.weeniearms.graffiti.generator.plantuml.PlantUmlGraphGenerator;
+import com.github.weeniearms.graffiti.generator.plantuml.PlantUmlSourceFormatter;
 import net.sourceforge.plantuml.FileFormat;
 import net.sourceforge.plantuml.FileFormatOption;
 import net.sourceforge.plantuml.SourceStringReader;

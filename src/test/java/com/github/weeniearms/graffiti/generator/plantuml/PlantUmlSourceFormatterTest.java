@@ -1,5 +1,6 @@
-package com.github.weeniearms.graffiti.generator;
+package com.github.weeniearms.graffiti.generator.plantuml;
 
+import com.github.weeniearms.graffiti.generator.plantuml.PlantUmlSourceFormatter;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
